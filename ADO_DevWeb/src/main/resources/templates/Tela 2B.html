@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tela 2B</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main class="container">
+            <div class="row">
+                <section class="col-md-12">
+                    <h1>Produto - Alteração </h1>
+                    <form th:action="@{/formulario}" method="post" th:object="${dados}" novalidate>
+                        <input type="hidden" name="id" value="123">
+
+                        <div class="form-group row">
+                            <label for="txtNome" class="col-sm-2 col-form-label">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nome" class="form-control" th:classappend="${#fields.hasErrors('nome')}? is-invalid" id="txtNome" placeholder="Nome do produto" th:field="*{nome}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+                                    Digite um nome.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="txtDescricao" class="col-sm-2 col-form-label">Descrição</label>
+                            <div class="col-sm-10">
+                                <textarea name="descricao" class="form-control" id="txtDescricao" placeholder="Descrição" th:field="*{descricao}"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="precoCompra" class="col-sm-2 col-form-label">Preço compra
+                            </label>
+                            <div class="col-sm-3">
+                                <input type="number" name="precoCompra" class="form-control" id="precoCompra" placeholder="Preço de Compra" th:field="*{precoCompra}">
+                            </div>
+
+                            <label for="precoVenda" class="col-sm-2 col-form-label">Preço de Venda
+                            </label>
+                            <div class="col-sm-3">
+                                <input type="number" name="precoVenda" class="form-control" th:classappend="${#fields.hasErrors('precoVenda')}? is-invalid" id="txtNumero" placeholder="Preço de Venda" th:field="*{precoVenda}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('precoVenda')}" th:errors="*{precoVenda}">
+                                    Digite um número válido.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="quantidade" class="col-sm-2 col-form-label">Quantidade</label>
+                            <div class="col-sm-3">
+                                <input type="number" name="quantidade" class="form-control" th:classappend="${#fields.hasErrors('quantidade')}? is-invalid" id="quantidade" placeholder="Digite a Quantidade" th:field="*{quantidade}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}">
+                                    Digite uma altura válida.
+                                </div>
+                            </div>
+                        </div>
+                          
+
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="optDisponivel" value="0" checked th:field="*{status}">
+                                        <label class="form-check-label" for="optDisponivel">
+                                            Disponivel
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="optIndisponivel" value="1" th:field="*{status}">
+                                        <label class="form-check-label" for="optIndisponivel">
+                                            Indisponivel
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2 pt-0">Categorias</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" th:classappend="${#fields.hasErrors('categorias')}? is-invalid" type="checkbox" name="categorias" id="Cat1" value="Cat1" th:field="*{categorias}">
+                                        <label class="form-check-label" for="Cat1">
+                                            Cat1
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" th:classappend="${#fields.hasErrors('categorias')}? is-invalid"type="checkbox" name="categorias" id="Cat2" value="Cat2" th:field="*{categorias}">
+                                        <label class="form-check-label" for="Cat2">
+                                            Cat2
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" th:classappend="${#fields.hasErrors('categorias')}? is-invalid"type="checkbox" name="categorias" id="Cat3" value="Cat3" th:field="*{categorias}">
+                                        <label class="form-check-label" for="Cat3">
+                                            Cat3
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" th:classappend="${#fields.hasErrors('categorias')}? is-invalid"type="checkbox" name="categorias" id="Cat4" value="Cat4" th:field="*{categorias}">
+                                        <label class="form-check-label" for="Cat4">
+                                            Cat4
+                                        </label>
+
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" th:classappend="${#fields.hasErrors('categorias')}? is-invalid"type="checkbox" name="categorias" id="Cat5" value="Cat5" th:field="*{categorias}">
+                                        <label class="form-check-label" for="Cat5">
+                                            Cat5
+                                        </label>                                        
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('categorias')}" th:errors="*{categorias}">Selecione pelo menos uma opção</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-3 offset-md-3">
+                                <button type="submit" class="btn btn-block btn-success">Salvar</button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="Tela 1A.html" role="button" class="btn btn-block btn-outline-dark">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+    </body>
+</html>
